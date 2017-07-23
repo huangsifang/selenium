@@ -14,8 +14,11 @@ print(title)
 now_url =driver.current_url  
 print(now_url)  
   
-#执行邮箱登陆  
-driver.switch_to.frame(driver.find_element_by_id("x-URS-iframe"))  
+#执行邮箱登陆
+driver.switch_to.default_content();
+# driver.switch_to.frame("x-URS-iframe") # 测试不可行
+# driver.switch_to.frame(driver.find_element_by_id("x-URS-iframe")) #时好时坏
+driver.switch_to.frame(0) #时好时坏
 driver.find_element_by_name("email").clear()  
 driver.find_element_by_name("email").send_keys("username")  
 driver.find_element_by_name("password").clear()  
