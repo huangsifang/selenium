@@ -5,6 +5,14 @@ class Page(object):
 
 	ourebuy_url = 'http://www.ourebuy.com'
 
+	'''
+	def __new__(cls, selenium_driver, base_url=ourebuy_url, parent=None):  
+		if not hasattr(cls, '_instance'):  
+			orig = super(Page, cls)  
+			cls._instance = orig.__new__(cls)
+		return cls._instance
+	'''
+
 	def __init__(self, selenium_driver, base_url=ourebuy_url, parent=None):
 		self.base_url = base_url
 		self.driver = selenium_driver
