@@ -10,4 +10,5 @@ class MyTest(unittest.TestCase):
 		self.driver.maximize_window()
 
 	def tearDown(self):
-		self.driver.quit()
+		pass
+		# self.driver.quit()

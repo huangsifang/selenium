@@ -46,6 +46,7 @@ class login(Page):
 	def user_login_cookies(self):
 		self.open()
 		# self.driver.add_cookie({'name':'Market.ourebuy.com', 'value':'zsbuy508*0cd0ac964ba14b9b90dbf2c4a2fecb3c'})
+		# driver.refresh()
 
 	user_login_success_loc = (By.XPATH, "/html/body/div/div/ul/li[1]")
 
