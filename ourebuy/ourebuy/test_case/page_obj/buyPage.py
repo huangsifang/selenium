@@ -20,7 +20,7 @@ class buy(Page):
 	buy_a_computer_loc2 = (By.XPATH, "//*[@id='gform2']/div[1]/ul/li/div/a/img")
 
 	ticket_pay_loc = (By.XPATH, "/html/body/div[3]/div/div[2]/div[2]/div[2]/div[4]/div/dl/dd[2]/a")
-	buy_now_btn = (By.XPATH, "/html/body/div[3]/div/div[2]/div[2]/div[2]/div[9]/div/a[1]")
+	buy_now_btn = (By.LINK_TEXT, "立即购买")
 	submit_btn = (By.ID, "submit_btn")
 
 	market_link_loc = (By.LINK_TEXT, "网上超市")
@@ -95,6 +95,11 @@ class buy(Page):
 		# 截取url等号后面的字符（订单号）
 		self.current_order_id = current_url.split("=")[-1]
 		print("订单号: %s" % self.current_order_id)
+
+		# 将订单号写入文件中
+		orderID_file = open("ourebuy/data/orderID.txt", 'a')
+		orderID_file.write("%s\n" % self.current_order_id)
+		orderID_file.close()
 
 		# 返回买家中心查看商品
 		self.entry_home()
