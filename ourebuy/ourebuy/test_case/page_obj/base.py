@@ -38,3 +38,11 @@ class Page(object):
 
 	def script(self, src):
 		return self.driver.execute_script(src)
+
+	def switch_to_current_window(self):
+		all_handles = self.driver.window_handles
+
+		current_windows = self.driver.current_window_handle
+		for handle in all_handles:
+			if handle != current_windows:
+				self.driver.switch_to.window(handle)

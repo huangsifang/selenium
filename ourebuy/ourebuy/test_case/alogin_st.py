@@ -26,7 +26,6 @@ class loginTest(myunit.MyTest):
 			function.insert_img(self.driver, "user_pawd_true.jpg")
 
 	def test_login2(self):
-		# login(self.driver).user_login_cookies()
 		# 用户名、密码正确
 		self.user_login_verify(username="zsbuy508", password="zsbuy508", code="0")
 		sleep(2)
