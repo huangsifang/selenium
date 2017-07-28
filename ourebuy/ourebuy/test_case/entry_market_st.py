@@ -9,7 +9,7 @@ class entryMarketTest(myunit.MyTest):
 	''' 进入超市测试 '''
 
 	def test_entry_market(self):
-		entryMarket(self.driver).entry_market()
+		entryMarket(self.driver).entry_market("buyer")
 		function.insert_img(self.driver, "user_pawd_true.jpg")
 
 if __name__ == "__main__":

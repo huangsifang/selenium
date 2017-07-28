@@ -1,3 +1,6 @@
+from time import sleep
+from selenium.webdriver.common.by import By
+
 class Page(object):
 	'''
 	页面基础类，用于所有页面的继承
@@ -39,6 +42,7 @@ class Page(object):
 	def script(self, src):
 		return self.driver.execute_script(src)
 
+	# 切换到当前页面
 	def switch_to_current_window(self):
 		all_handles = self.driver.window_handles
 
@@ -46,3 +50,29 @@ class Page(object):
 		for handle in all_handles:
 			if handle != current_windows:
 				self.driver.switch_to.window(handle)
+
+	# 进入点击侧边栏条目
+	def entry_menu(self, sub_menu, menu = None):
+		if menu != None:
+			self.find_element(*(By.LINK_TEXT, menu)).click()
+		self.find_element(*(By.LINK_TEXT, sub_menu)).click()
+
+	# 从文件中读取最后一个订单号
+	def find_orderID(self):
+		try:
+			orderID_file = open("ourebuy/data/orderID.txt", 'r')
+			lines = orderID_file.readlines()
+			orderID_file.close()
+			if lines[-1][-1:] == '\n': # 存在回车符
+				orderID = lines[-1][:-1]
+			else: # 不存在
+				orderID = lines[-1]
+			return orderID
+		except FileNotFoundError:
+			print("未找到文件")
+
+	#将页面滚动到底部
+	def window_to_bottom(self):
+		js="window.scrollTo(0,document.body.scrollHeight)"
+		self.driver.execute_script(js)
+		sleep(1)

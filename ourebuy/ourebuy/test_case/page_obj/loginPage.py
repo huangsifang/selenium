@@ -47,8 +47,8 @@ class login(Page):
 	# 错误提示
 	def error_hint(self):
 		alert = self.driver.switch_to_alert()
-		info = self.driver.switch_to_alert().text
-		self.driver.switch_to_alert().accept() # 必须关闭弹出框，否则截图会报错
+		info = alert.text
+		alert.accept() # 必须关闭弹出框，否则截图会报错
 		self.driver.switch_to.default_content() 
 		return info
 

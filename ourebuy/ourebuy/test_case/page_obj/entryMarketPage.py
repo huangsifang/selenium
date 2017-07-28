@@ -17,9 +17,11 @@ class entryMarket(Page):
 	def entry_market(self, role):
 		self.open()
 		if role == "buyer":
-			self.driver.add_cookie({'name':'Market.ourebuy.com','value':'zsbuy508*7cdc161f137047b3b931508aa3b87b50','domain':'.ourebuy.com'})
+			self.driver.add_cookie({'name':'Market.ourebuy.com','value':'zsbuy508*55c80e177a1041bfb9050af64e49a938','domain':'.ourebuy.com'})
 		elif role == "seller":
-			self.driver.add_cookie({'name':'Market.ourebuy.com','value':'zssale508*5ddf37a5398041aa9cf771c4cdf25fde','domain':'.ourebuy.com'})
+			self.driver.add_cookie({'name':'Market.ourebuy.com','value':'zssale508*5fc8508a8ebc4562b8c2b8f39bf30c4f','domain':'.ourebuy.com'})
+		else:
+			self.driver.add_cookie({'name':'Market.ourebuy.com','value':'zsjiesuan508*abf88ca1f941489595bae7614425971b','domain':'.ourebuy.com'})
 		self.driver.refresh()
 		self.driver.switch_to.frame(self.find_element(*self.login_frame_loc))
 		# login(self.driver).user_login("zsbuy508", "zsbuy508", "0")

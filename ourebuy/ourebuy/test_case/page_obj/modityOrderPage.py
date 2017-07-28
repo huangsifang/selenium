@@ -6,7 +6,7 @@ from .entryMarketPage import entryMarket
 
 class modityOrder(Page):
 	'''
-	用户购买商品
+	供应商洽谈订单
 	'''
 	url = '/'
 
@@ -16,15 +16,10 @@ class modityOrder(Page):
 	commerce_order = (By.LINK_TEXT, "销售订单")
 	commerce_suspense_order = (By.LINK_TEXT, "待处理订单")
 
-	# 从文件中读取最后一个订单号
-	def find_orderID(self):
-		try:
-			orderID_file = open("ourebuy/data/orderID.txt", 'r')
-			lines = orderID_file.readlines()
-			orderID_file.close()
-			return lines[-1][:-1]
-		except FileNotFoundError:
-			print("未找到文件")
+	freight_input_loc = (By.ID, "yfamt_0")
+	submit_order_btn_loc = (By.LINK_TEXT, "确认订单")
+	note_input_loc = (By.ID, "gysbeiz")
+	ok_btn_loc = (By.XPATH, "/html/body/div[6]/div/span[3]/a[1]")
 
 	# 进入卖家中心
 	def entry_home(self):
@@ -51,13 +46,24 @@ class modityOrder(Page):
 		return state_a[0].text
 
 	# 洽谈订单
-	def modityOrderBtn(self):
+	def click_modity_order_btn(self):
 		i = self.check_order_index()
+
+		#将页面滚动到底部
+		self.window_to_bottom()
+		
 		btn_a = self.driver.find_elements_by_css_selector("body div.mainbody div div.fr.mrgT30.commerce_right div.contract_m.clearfix table tr:nth-child(%s) td.modity_td p a.modity_tda" % (i+2))
 		btn_a[0].click()
 
+	# 确认订单
+	def submit_order(self, freight, note):
+		self.find_element(*self.freight_input_loc).send_keys(freight)
+		self.find_element(*self.note_input_loc).send_keys(note)
+		self.find_element(*self.submit_order_btn_loc).click()
+		self.driver.switch_to_alert().accept()
+		self.find_element(*self.ok_btn_loc).click()
 
-	def modity_order(self):
+	def entry_home_check_order(self):
 		# 进入网上超市个人中心
 		entryMarket(self.driver).entry_market("seller")
 
@@ -65,4 +71,8 @@ class modityOrder(Page):
 		self.entry_home()
 		self.check_order()
 
-		self.modityOrderBtn()
+	# 洽谈订单
+	def modity_order(self):
+		self.click_modity_order_btn()
+
+		self.submit_order(5, "无备注")
