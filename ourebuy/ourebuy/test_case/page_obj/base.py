@@ -8,6 +8,8 @@ class Page(object):
 
 	ourebuy_url = 'http://www.ourebuy.com'
 
+	ok_btn_loc = (By.XPATH, "/html/body/div[6]/div/span[3]/a[1]")
+
 	'''
 	def __new__(cls, selenium_driver, base_url=ourebuy_url, parent=None):  
 		if not hasattr(cls, '_instance'):  
@@ -76,3 +78,7 @@ class Page(object):
 		js="window.scrollTo(0,document.body.scrollHeight)"
 		self.driver.execute_script(js)
 		sleep(1)
+
+	# 弹出框确定按钮
+	def click_ok_btn(self):
+		self.find_element(*self.ok_btn_loc).click()

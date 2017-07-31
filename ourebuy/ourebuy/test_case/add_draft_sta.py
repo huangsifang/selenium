@@ -10,10 +10,27 @@ class addDraftTest(myunit.MyTest):
 
 	def test_add_draft(self):
 		po = addDraft(self.driver)
-		po.add_draft()
+		'''
+		# 买方采购订单-待处理订单
+		po.entry_order()
 
 		# 验证订单状态
-		# self.assertEqual(po.check_order_state(), "待供应商确认订单")
+		self.assertEqual(po.check_order_state(), "待承兑汇票支付")
+
+		# 点击登记承兑汇票
+		po.login_draft()
+		'''
+
+		# 买方承兑汇票管理-承兑汇票管理
+		po.entry_draft()
+
+		po.add_draft()
+
+		# 验证票状态
+		self.assertEqual(po.check_draft_state(), "待提交")
+
+		# 提交汇票
+		po.submit_draft()
 		function.insert_img(self.driver, "user_pawd_true.jpg")
 
 if __name__ == "__main__":

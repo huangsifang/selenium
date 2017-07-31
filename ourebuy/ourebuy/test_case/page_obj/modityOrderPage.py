@@ -19,7 +19,6 @@ class modityOrder(Page):
 	freight_input_loc = (By.ID, "yfamt_0")
 	submit_order_btn_loc = (By.LINK_TEXT, "确认订单")
 	note_input_loc = (By.ID, "gysbeiz")
-	ok_btn_loc = (By.XPATH, "/html/body/div[6]/div/span[3]/a[1]")
 
 	# 进入卖家中心
 	def entry_home(self):
@@ -61,7 +60,7 @@ class modityOrder(Page):
 		self.find_element(*self.note_input_loc).send_keys(note)
 		self.find_element(*self.submit_order_btn_loc).click()
 		self.driver.switch_to_alert().accept()
-		self.find_element(*self.ok_btn_loc).click()
+		self.click_ok_btn()
 
 	def entry_home_check_order(self):
 		# 进入网上超市个人中心
