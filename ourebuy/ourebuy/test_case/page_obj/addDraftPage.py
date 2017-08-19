@@ -39,7 +39,7 @@ class addDraft(Page):
 	final_ok_btn_loc = (By.LINK_TEXT, "确认登记完毕")
 
 	# 票号
-	draft_id = "2017073111111119"
+	draft_id = "2017080155555555"
 
 	# 返回订单号为order_id的订单所处的行号
 	def check_order_index(self):

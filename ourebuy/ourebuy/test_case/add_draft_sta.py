@@ -10,6 +10,7 @@ class addDraftTest(myunit.MyTest):
 
 	def test_add_draft(self):
 		po = addDraft(self.driver)
+
 		'''
 		# 买方采购订单-待处理订单
 		po.entry_order()
@@ -31,6 +32,7 @@ class addDraftTest(myunit.MyTest):
 
 		# 提交汇票
 		po.submit_draft()
+		
 		function.insert_img(self.driver, "user_pawd_true.jpg")
 
 if __name__ == "__main__":
