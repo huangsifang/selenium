@@ -73,6 +73,20 @@ class Page(object):
 		except FileNotFoundError:
 			print("未找到文件")
 
+	# 从文件中读取最后一个协议号
+	def find_agreementID(self):
+		try:
+			agreementID_file = open("junk/data/agreementID.txt", 'r')
+			lines = agreementID_file.readlines()
+			agreementID_file.close()
+			if lines[-1][-1:] == '\n': # 存在回车符
+				agreementID = lines[-1][:-1]
+			else: # 不存在
+				agreementID = lines[-1]
+			return agreementID
+		except FileNotFoundError:
+			print("未找到文件")
+
 	#将页面滚动到底部
 	def window_to_bottom(self):
 		js="window.scrollTo(0,document.body.scrollHeight)"

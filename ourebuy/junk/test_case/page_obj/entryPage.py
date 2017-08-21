@@ -21,7 +21,7 @@ class entry(Page):
 		elif role == "seller":
 			self.driver.add_cookie({'name':'Market.ourebuy.com','value':'zssale508*98972ccb6a6a4e988963cada07feda70','domain':'.ourebuy.com'})
 		else:
-			self.driver.add_cookie({'name':'Market.ourebuy.com','value':'sfzhongjie808*366783f8f89040cdafff7f98111d9915','domain':'.ourebuy.com'})
+			self.driver.add_cookie({'name':'Market.ourebuy.com','value':'sfzhongjie808*7923c6952d54401ea6ca9604499b7d9b','domain':'.ourebuy.com'})
 		self.driver.refresh()
 		self.driver.switch_to.frame(self.find_element(*self.login_frame_loc))
 		self.find_element(*self.my_platform_loc).click()
